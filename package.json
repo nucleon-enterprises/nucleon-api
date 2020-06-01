@@ -1,0 +1,38 @@
+{
+  "name": "nucleon-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nucleon-enterprises/nucleon-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nucleon-enterprises/nucleon-api/issues"
+  },
+  "homepage": "https://github.com/nucleon-enterprises/nucleon-api#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.2.0",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.16",
+    "mongoose-unique-validator": "^2.0.3",
+    "require-dir": "^1.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
