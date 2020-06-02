@@ -32,23 +32,29 @@ module.exports = {
         }
     },
     async authenticate(req, res) {
-        const { email, password } = req.body;
+        const { nick, password } = req.body;
 
-        const user = await User.findOne({ email }).select('+password');
+        const userByEmail = await User.findOne({ email: nick }).select('+password');
+        
+        const [ nickname, nickCode ] = nick.split('#');
+        
+        const userByNick = await User.findOne({ nickname, nickCode: parseInt(nickCode) }).select('+password');
 
-        if (!user) {
+        if (!userByEmail && !userByNick) {
             return res.status(400).send({ error: "User not found"});
         }
 
+        const user = userByEmail ? userByEmail : userByNick;
+
         if (!await bcrypt.compare(password, user.password)) {
-            return res.status(400).send({ error: "Invalid password"});
+            return res.status(400).send({ error: "Invalid password" });
         }
 
         user.password = undefined;
 
         const token = generateToken({ id: user.id });
 
-        return res.json({ user, token});
+        return res.json({ user, token });
     },
     async show(req, res) {
         const users = await User.find();
